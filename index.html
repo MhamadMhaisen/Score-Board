@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./resources/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./resources/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./resources/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./resources/favicon_io/site.webmanifest" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scoreboard Web App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo-wrapper">
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <img src="./resources/logo.jpg" alt="Logo" />
+      </div>
+    </header>
+    <section class="play-btn" id="play-btn">
+      <h1>Start App</h1>
+    </section>
+    <div class="container" data-aos="fade-up-right">
+      <div class="player player1" data-aos="fade-up-right">
+        <input
+          type="text"
+          class="player-name"
+          placeholder="Player 1 Editable name"
+        />
+        <div class="number-input-wrapper">
+          <label for="player1-command-points">Command points:</label>
+          <input type="number" id="player1-command-points" value="0" />
+          <button class="arrow arrow-up" tabindex="-1">&#9650;</button>
+          <button class="arrow arrow-down" tabindex="-1">&#9660;</button>
+        </div>
+        <div>
+          <svg class="arrows">
+            <path class="a1" d="M0 0 L30 32 L60 0"></path>
+            <path class="a2" d="M0 20 L30 52 L60 20"></path>
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+          </svg>
+        </div>
+        <table class="score-table" >
+          <!-- Add 4x4 table rows and columns here -->
+        </table>
+      </div>
+      <div class="player player2" data-aos="fade-up-left">
+        <input
+          type="text"
+          class="player-name"
+          placeholder="Player 2 Editable name"
+        />
+        <div class="number-input-wrapper">
+          <label for="player1-command-points">Command points:</label>
+          <input type="number" id="player1-command-points" value="0" />
+          <button class="arrow arrow-up" tabindex="-1">&#9650;</button>
+          <button class="arrow arrow-down" tabindex="-1">&#9660;</button>
+        </div>
+
+        <table class="score-table">
+          <!-- Add 4x4 table rows and columns here -->
+        </table>
+      </div>
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
