@@ -31,8 +31,11 @@ body {
 
 .player-name,
 .command-points {
-  font-size: 18px;
   margin-bottom: 10px;
+}
+.player-name {
+  font-size: 6.5vh;
+  text-align: center;
 }
 
 .score-table {
@@ -65,21 +68,23 @@ body {
   box-sizing: border-box;
 }
 
-input[type="text"],
-input[type="number"] {
-  padding: 5px 10px;
-  font-size: 18px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  background-color: #fff;
+input[type="text"] {
+  background: transparent;
+  border: none;
+  color: #fff;
 }
-
 input[type="text"]:focus,
 input[type="number"]:focus {
   outline: none;
   border-color: rgba(0, 0, 0, 0.3);
 }
 
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+  font-size: 5vh;
+}
 label {
   color: #fff;
   font-size: 18px;
@@ -112,6 +117,7 @@ td input[type="text"] {
   border: none;
   color: #ffffff;
   padding: 0;
+  font-size: 2.8vh;
 }
 
 .number-input-wrapper {
@@ -135,7 +141,9 @@ td input[type="text"] {
   width: 100%;
   height: 100%;
 }
-
+.number-input-wrapper label {
+  font-size: 3vh;
+}
 .score-table input[type="number"] {
   width: calc(100% - 20px);
   height: calc(100% - 2px);
@@ -144,12 +152,12 @@ td input[type="text"] {
 
 .arrow {
   position: absolute;
-  right: 20px;
+  right: 5%;
   border: none;
   background: transparent;
   outline: none;
-  font-size: 15px;
-  padding: 2px 5px;
+  font-size: 25px;
+  padding: 65% auto;
   cursor: pointer;
 }
 
@@ -444,4 +452,66 @@ body {
 .play-btn h1 {
   font-size: 8.5vh;
   width: 17%;
+}
+/* Timer styles */
+#timer1,
+#timer2 {
+  display: inline-block;
+  width: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+.timer-start,
+.timer-stop {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.timer-start:hover,
+.timer-stop:hover {
+  filter: brightness(0.9);
+}
+
+.player1 .timer-start,
+.player1 .timer-stop {
+  background-color: #f56525;
+  color: #ffffff;
+}
+
+.player2 .timer-start,
+.player2 .timer-stop {
+  background-color: #172737;
+  color: #ffffff;
+}
+
+.timer-display {
+  display: inline-block;
+  margin: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 2px solid #cccccc;
+  border-radius: 4px;
+}
+.timer-container {
+  display: flex;
+  align-items: center;
+}
+
+.timer-container .timer-start {
+  margin-right: 10px;
 }

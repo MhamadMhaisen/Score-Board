@@ -1,5 +1,7 @@
 $(document).ready(function () {
   const tables = document.querySelectorAll(".score-table");
+  let timeout;
+
   console.log(`Found ${tables.length} score tables.`);
 
   tables.forEach((table) => {
@@ -9,7 +11,7 @@ $(document).ready(function () {
     const header = table.createTHead().insertRow();
     header.insertCell(); // Empty cell for the top-left corner
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
       const cell = header.insertCell();
       const input = document.createElement("input");
       input.type = "text";
@@ -27,7 +29,7 @@ $(document).ready(function () {
       input.value = i === 0 ? "Primary" : `Row ${i}`;
       rowNameCell.appendChild(input);
 
-      for (let j = 0; j < 6; j++) {
+      for (let j = 0; j < 5; j++) {
         const cell = row.insertCell();
 
         // Create wrapper element for number input and arrow buttons
@@ -98,5 +100,67 @@ $(document).ready(function () {
 
   $("h1").on("click", function () {
     $("html, body").animate({ scrollTop: $(document).height() }, 500, "linear");
+  });
+
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes
+      .toString()
+      .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  }
+  function setupTimers() {
+    const startButtons = document.querySelectorAll(".timer-start");
+    const stopButtons = document.querySelectorAll(".timer-stop");
+    const displayElements = document.querySelectorAll(".timer-display");
+
+    startButtons.forEach((startButton, index) => {
+      startButton.addEventListener("click", () => {
+        const displayElement = displayElements[index];
+        let timeElapsed = 0;
+        displayElement.dataset.intervalId = setInterval(() => {
+          timeElapsed += 1;
+          displayElement.textContent = formatTime(timeElapsed);
+        }, 1000);
+      });
+    });
+
+    stopButtons.forEach((stopButton, index) => {
+      stopButton.addEventListener("click", () => {
+        const displayElement = displayElements[index];
+        clearInterval(displayElement.dataset.intervalId);
+      });
+    });
+  }
+  setupTimers();
+  function calculateTotalVictoryPoints(table) {
+    let total = 0;
+    for (let i = 1; i < table.rows.length; i++) {
+      const row = table.rows[i];
+      const input1 = row.cells[1].querySelector("input[type='number']");
+      const input2 = row.cells[2].querySelector("input[type='number']");
+      const input3 = row.cells[3].querySelector("input[type='number']");
+      const input4 = row.cells[4].querySelector("input[type='number']");
+      const input5 = row.cells[5].querySelector("input[type='number']");
+      total += parseInt(input1.value, 10);
+      total += parseInt(input2.value, 10);
+      total += parseInt(input3.value, 10);
+      total += parseInt(input4.value, 10);
+      total += parseInt(input5.value, 10);
+    }
+    return total;
+  }
+
+  const tableVP = document.querySelectorAll(".score-table");
+  const totalPointsInputs = document.querySelectorAll("#total-victory-points");
+
+  arrow = document.querySelectorAll(".arrow");
+  arrow.forEach((arr) => {
+    arr.addEventListener("click", () => {
+      const total1 = calculateTotalVictoryPoints(tableVP[0]);
+      totalPointsInputs[0].value = total1;
+      const total2 = calculateTotalVictoryPoints(tableVP[1]);
+      totalPointsInputs[1].value = total2;
+    });
   });
 });
