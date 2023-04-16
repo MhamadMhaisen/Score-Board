@@ -163,4 +163,64 @@ $(document).ready(function () {
       totalPointsInputs[1].value = total2;
     });
   });
+  function parseTime(timeString) {
+    const [hours, minutes] = timeString.split(":").map((t) => parseInt(t, 10));
+    return hours * 60 * 60 + minutes * 60;
+  }
+
+  function setupTimers() {
+    const startButtons = document.querySelectorAll(".timer-start");
+    const stopButtons = document.querySelectorAll(".timer-stop");
+    const displayElements = document.querySelectorAll(".timer-display");
+
+    startButtons.forEach((startButton, index) => {
+      startButton.addEventListener("click", () => {
+        const displayElement = displayElements[index];
+        let timeRemaining = parseTime(displayElement.value);
+        clearInterval(displayElement.dataset.intervalId);
+        displayElement.dataset.intervalId = setInterval(() => {
+          timeRemaining -= 1;
+
+          if (timeRemaining >= 0) {
+            displayElement.value = formatTime(timeRemaining);
+          } else {
+            clearInterval(displayElement.dataset.intervalId);
+          }
+        }, 1000);
+      });
+    });
+
+    stopButtons.forEach((stopButton, index) => {
+      stopButton.addEventListener("click", () => {
+        const displayElement = displayElements[index];
+        clearInterval(displayElement.dataset.intervalId);
+      });
+    });
+  }
+
+  // Set maxlength for row name input fields
+  document
+    .querySelectorAll(".score-table input[type='text']")
+    .forEach((input) => {
+      input.setAttribute("maxlength", "256");
+    });
+
+  function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${hours
+      .toString()
+      .padStart(
+        2,
+        "0"
+      )}:${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  }
+
+  function parseTime(timeString) {
+    const [hours, minutes, seconds] = timeString
+      .split(":")
+      .map((t) => parseInt(t, 10));
+    return hours * 3600 + minutes * 60 + seconds;
+  }
 });

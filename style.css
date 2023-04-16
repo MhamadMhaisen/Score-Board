@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   background-color: #f5f5f5;
+  min-height: 100vh;
 }
 .container {
   display: flex;
@@ -9,7 +10,7 @@ body {
   height: 100vh;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .player {
@@ -18,7 +19,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  /* flex-grow: 1; */
+  padding: 7vh;
+  height: 10 0vh;
+  min-height: 100vh;
 }
 
 .player1 {
@@ -72,6 +76,8 @@ input[type="text"] {
   background: transparent;
   border: none;
   color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 input[type="text"]:focus,
 input[type="number"]:focus {
@@ -118,6 +124,8 @@ td input[type="text"] {
   color: #ffffff;
   padding: 0;
   font-size: 2.8vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .number-input-wrapper {
@@ -217,6 +225,7 @@ body {
   background-size: 400% 400%;
   animation: gradientBackground 15s ease infinite;
   cursor: pointer;
+  overflow-y: auto;
 }
 
 @keyframes gradientBackground {
@@ -514,4 +523,18 @@ body {
 
 .timer-container .timer-start {
   margin-right: 10px;
+}
+.score-table input[type="text"] {
+  font-size: 14px;
+}
+#player1-command-points {
+  height: 7vh;
+}
+.timer-duration {
+  padding: 3vh;
+  
+}
+.timer-duration-input {
+  font-size: 3vh;
+  text-align: center;
 }
